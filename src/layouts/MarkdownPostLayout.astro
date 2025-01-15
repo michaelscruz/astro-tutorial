@@ -1,0 +1,24 @@
+---
+import BaseLayout from "./BaseLayout.astro"
+
+const { frontmatter } = Astro.props
+---
+<BaseLayout pageTitle={frontmatter.title}>
+  <style>
+    a.back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  </style>
+  <style is:global>
+    h1 {
+      text-align: center;
+    }
+  </style>
+  <p>Published on: {frontmatter.pubDate.toString().slice(0, 10)}</p>
+  <p>Written by {frontmatter.author}</p>
+  <img class="cover-img" width="100%" src={frontmatter.image.url} alt={frontmatter.image.alt}>
+  <p><em>{frontmatter.description}</em></p>
+  <slot />
+  <a class="back-link" href="/blog/">👈 Back to Blog</a>
+</BaseLayout>
